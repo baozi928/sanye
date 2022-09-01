@@ -22,7 +22,6 @@
     import NumberPad from '@/components/NumberPad.vue';
     import {Component, Watch} from 'vue-property-decorator';
     import recordListModel from '@/models/recordListModel';
-    import tagListModel from '@/models/tagListModel'
 
 
     const recordList = recordListModel.fetch();//初始化数据 把数据从数据库里拿出来，这样才能把当前数据和之前数据保存到一起

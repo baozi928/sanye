@@ -21,38 +21,29 @@
 <script lang="ts">
     import Vue from 'vue';
     import {Component} from 'vue-property-decorator';
-    import tagListModel from '@/models/tagListModel';
     import FormItem from '@/components/FormItem.vue';
     import Button from '@/components/Button.vue';
     @Component({
         components: {Button, FormItem}
     })
     export default class EditLabel extends Vue {
-        tag?:{id:string,name:string} = undefined
-        //created之后才能赋值
+        tag?:Tag = undefined
+
         created() {
-            //获取页面url的id
-            const id = this.$route.params.id; //路由信息放在route里面 路由器相关的信息就放在router里面，params可以拿到所有参数
-            tagListModel.fetch();
-            const tags = tagListModel.data;
-            //通过id在所有的tags里找到id对应的tag
-            const tag = tags.filter(t=>t.id === id)[0]
-            if(tag){
-                //把对应tag赋值给这个tag
-                this.tag = tag;
-            }else {
+            this.tag = window.findTag(this.$route.params.id);
+            if (!this.tag) {
                 this.$router.replace('/404') //路由器跳转
             }
         }
 
         update(name:string){
             if (this.tag) {//判断tag是否为空
-                tagListModel.update(this.tag.id, name)
+                window.updateTag(this.tag.id, name)
             }
         }
         remove(){
             if (this.tag) { //判断tag是否存在，不判断会报错
-                if (tagListModel.remove(this.tag.id)) {
+                if (window.removeTag(this.tag.id)) {
                     this.$router.back();
                 } else {
                     window.alert('删除失败');
