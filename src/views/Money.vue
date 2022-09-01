@@ -21,7 +21,7 @@
     import Types from '@/components/Types.vue';
     import NumberPad from '@/components/NumberPad.vue';
     import {Component, Watch} from 'vue-property-decorator';
-    import store from '@/router/index2';
+    import store from '@/store/index2';
 
 
     @Component({
