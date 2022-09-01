@@ -21,20 +21,18 @@
     import Types from '@/components/Types.vue';
     import NumberPad from '@/components/NumberPad.vue';
     import {Component, Watch} from 'vue-property-decorator';
-    import recordListModel from '@/models/recordListModel';
+    import store from '@/router/index2';
 
-
-    const recordList = recordListModel.fetch();//初始化数据 把数据从数据库里拿出来，这样才能把当前数据和之前数据保存到一起
 
     @Component({
         components: {NumberPad, Types, FormItem, Tags},
     })
     export default class Money extends Vue {
-        tags = window.tagList;
+        tags = store.tagList;
+        recordList = store.recordList;
         record: RecordItem = {
             tags: [], notes: '', type: '-', amount: 0
         };
-        recordList = window.recordList;
         onUpdateTags(value: string[]) {
             this.record.tags = value;
         }
@@ -42,7 +40,7 @@
             this.record.notes = value;
         }
         saveRecord() {
-           window.createRecord(this.record);
+            store.createRecord(this.record);
         }
 
     }

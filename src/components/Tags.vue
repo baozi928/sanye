@@ -19,7 +19,7 @@
 
     @Component
     export default class Tags extends Vue {
-    @Prop() dataSource:string[] |undefined
+    @Prop() readonly dataSource:string[] |undefined
 
     selectedTags:string[] = []
 
@@ -39,7 +39,9 @@
         if ( name === ''){
             window.alert('标签名不能为空')
         } else if(this.dataSource){
-            this.$emit('update:value',[...this.dataSource,name])//如果name不为空，就触发update事件，并且把后面这个数组的值重新赋值给父组件中的data
+            this.$emit('update:dataSource',
+                [...this.dataSource, name]);//如果name不为空，就触发update事件，并且把后面这个数组的值重新赋值给父组件中的data
+            console.log(name);
         }
     }
 
