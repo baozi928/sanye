@@ -8,7 +8,7 @@
                    placeholder="在此处输入备注"
                    @update:value="onUpdateNotes"/>
             </div>
-            <Tags :data-source.sync="tags" @update:value="onUpdateTags"/>
+            <Tags/>
             <!-- 下面的YYY事件怎么拿到被选中的tag？ vue会自动把XXX事件的参数传给yyy作为第一个参数-->
         </Layout>
     </div>
@@ -28,14 +28,11 @@
         components: {NumberPad, Types, FormItem, Tags},
     })
     export default class Money extends Vue {
-        tags = store.tagList;
         recordList = store.recordList;
         record: RecordItem = {
             tags: [], notes: '', type: '-', amount: 0
         };
-        onUpdateTags(value: string[]) {
-            this.record.tags = value;
-        }
+
         onUpdateNotes(value: string) {
             this.record.notes = value;
         }
