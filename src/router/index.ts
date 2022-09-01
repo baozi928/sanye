@@ -1,23 +1,41 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/Home.vue'
+import Money from '@/views/Money.vue';
+import tongji from '@/views/tongji.vue';
+import Labels from '@/views/Labels.vue';
+import NotFound from '@/views/NotFound.vue'
+import EditLabel from '@/components/EditLabel.vue';
 
 Vue.use(VueRouter)
 
-const routes: Array<RouteConfig> = [
+
+
+
+const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    component: Money
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/Money',
+    component: Money,
+  },
+  {
+    path: '/Labels',
+    component: Labels,
+  },
+  {
+    path: '/tongji',
+    component: tongji,
+  },
+  {
+    path:'/labels/edit/:id', //占位，edit后面会有个字符串，但目前还不确定
+    component:EditLabel
+  },
+  {
+    path: '*',
+    component: NotFound,
+  },
 ]
 
 const router = new VueRouter({
