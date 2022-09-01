@@ -1,3 +1,5 @@
+import createId from '@/lib/createId';
+
 const localStorageKeyName = 'tagList';
 type Tag = {
     id: string,
@@ -22,7 +24,8 @@ const tagListModel: TagListModel = {
         //新建name的时候要获取的是data里所有的name进行查找，看name是否已存在
         const names = this.data.map(item => item.name);//map：对data里面的每一项（组）用item表示，获取item的name
         if (names.indexOf(name) >= 0) {return 'duplicated';}
-        this.data.push({id: name, name: name});
+        const id = createId().toString();
+        this.data.push({id, name: name});
         this.save();
         return 'success';
     },

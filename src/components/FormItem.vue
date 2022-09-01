@@ -5,7 +5,7 @@
             <input type="text"
                    :value="value"
                    @input="onValueChanged($event.target.value)"
-                   :placeholder="this.placeholder">
+                   :placeholder="placeholder">
 <!--            把外部数据value传给input，当用户在input进行变更的时候，不会对value进行
 变更，只是把value的值通过这个函数回传给上面这个组件-->
         </label>
@@ -23,7 +23,6 @@
         @Prop({required:true}) fieldName! :string;
         @Prop() placeholder?:string;
 
-        @Watch('value') //val变化后触发update事件
         onValueChanged(value:string){
             this.$emit('update:value',value)
         }

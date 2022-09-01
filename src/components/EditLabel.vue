@@ -51,10 +51,12 @@
             }
         }
         remove(){
-            console.log('点击');
             if (this.tag) { //判断tag是否存在，不判断会报错
-                console.log(this.tag);
-                tagListModel.remove(this.tag.id)
+                if (tagListModel.remove(this.tag.id)) {
+                    this.$router.back();
+                } else {
+                    window.alert('删除失败');
+                }
             }
         }
     }
