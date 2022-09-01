@@ -26,13 +26,12 @@
 
 
     const recordList = recordListModel.fetch();//初始化数据 把数据从数据库里拿出来，这样才能把当前数据和之前数据保存到一起
-    const tagList = tagListModel.fetch(); //初始化
 
     @Component({
         components: {NumberPad, Types, FormItem, Tags},
     })
     export default class Money extends Vue {
-        tags = tagList;
+        tags = window.tagList;
         record: RecordItem = {
             tags: [], notes: '', type: '-', amount: 0
         };
