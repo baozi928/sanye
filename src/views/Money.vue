@@ -34,7 +34,7 @@
         record: RecordItem = {
             tags: [], notes: '', type: '-', amount: 0
         };
-        recordList: RecordItem[] = recordList;
+        recordList = window.recordList;
         onUpdateTags(value: string[]) {
             this.record.tags = value;
         }
@@ -42,11 +42,7 @@
             this.record.notes = value;
         }
         saveRecord() {
-            recordListModel.create(this.record)
-        }
-        @Watch('recordList')
-        onRecordListChange() {
-           recordListModel.save();
+           window.createRecord(this.record);
         }
 
     }
