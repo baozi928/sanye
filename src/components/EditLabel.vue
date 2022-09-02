@@ -7,7 +7,7 @@
         </div>
         <div class="form-wrapper">
             <FormItem
-                    :value="tag.name"
+                    :value="currentTag.name"
                     @update:value="update"
                     field-name="标签名"
                     placeholder="请输入标签名"></FormItem>
@@ -27,34 +27,29 @@
         components: {Button, FormItem}
     })
     export default class EditLabel extends Vue {
-        get tag() {
+        get currentTag() {
             return this.$store.state.currentTag;
         }
 
         created() {
             const id = this.$route.params.id;
+            this.$store.commit('fetchTags');
             this.$store.commit('setCurrentTag', id);
-            if (!this.tag) {
+            if (!this.currentTag) {
                 this.$router.replace('/404') //路由器跳转
             }
         }
 
         update(name: string) {
-            if (this.tag) {//判断tag是否为空
-                //TODO
-                // store.updateTag(this.tag.id, name);
+            if (this.currentTag) {//判断tag是否为空
+                this.$store.commit('updateTag', {
+                    id: this.currentTag.id, name});
             }
         }
 
         remove() {
-            if (this.tag) { //判断tag是否存在，不判断会报错
-                // TODO
-                return
-                // if (store.removeTag(this.tag.id)) {
-                //   this.$router.back();
-                // } else {
-                //   window.alert('删除失败');
-                // }
+            if (this.currentTag) { //判断tag是否存在，不判断会报错
+                this.$store.commit('removeTag', this.currentTag.id);
             }
         }
     }
