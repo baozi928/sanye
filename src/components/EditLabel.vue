@@ -28,27 +28,32 @@
         components: {Button, FormItem}
     })
     export default class EditLabel extends Vue {
-        tag?:Tag = undefined
+        tag?: Tag = undefined
 
         created() {
-            this.tag = store.findTag(this.$route.params.id);
+            // TODO
+            // this.tag =  // store.findTag(this.$route.params.id);
             if (!this.tag) {
                 this.$router.replace('/404') //路由器跳转
             }
         }
 
-        update(name:string){
+        update(name: string) {
             if (this.tag) {//判断tag是否为空
-                store.updateTag(this.tag.id, name)
+                //TODO
+                // store.updateTag(this.tag.id, name);
             }
         }
-        remove(){
+
+        remove() {
             if (this.tag) { //判断tag是否存在，不判断会报错
-                if (store.removeTag(this.tag.id)) {
-                    this.$router.back();
-                } else {
-                    window.alert('删除失败');
-                }
+                // TODO
+                return
+                // if (store.removeTag(this.tag.id)) {
+                //   this.$router.back();
+                // } else {
+                //   window.alert('删除失败');
+                // }
             }
         }
     }
