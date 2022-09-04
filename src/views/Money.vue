@@ -7,9 +7,9 @@
             <div class="notes">
                 <FormItem field-name="备注"
                           placeholder="在此处输入备注"
-                          @update:value="onUpdateNotes"/>
+                          :value.sync="record.notes"/>
             </div>
-            <Tags/>
+            <Tags @update:value="record.tags = $event"/>
             <!-- 下面的YYY事件怎么拿到被选中的tag？ vue会自动把XXX事件的参数传给yyy作为第一个参数-->
         </Layout>
     </div>
@@ -47,14 +47,20 @@
         }
 
         saveRecord() {
+            if (!this.record.tags || this.record.tags.length === 0) {
+                return window.alert('请至少选择一个标签');
+            }
             this.$store.commit('createRecord', this.record);
+            if (this.$store.state.createRecordError === null) {
+                window.alert('已保存');
+                this.record.notes = '';
+            }
         }
-
     }
 </script>
 
-<style lang="scss">
-    .layout-content {
+<style lang="scss" scoped>
+    ::v-deep .layout-content {
         display: flex;
         flex-direction: column-reverse;
     }
