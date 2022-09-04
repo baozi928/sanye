@@ -1,6 +1,6 @@
 <template>
     <Layout>
-        <Tabs class-prefix="type" :data-source="typeList" :value.sync="type"/>
+        <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
         <div>
             type: {{type}}
         </div>
@@ -13,15 +13,14 @@
     import Vue from 'vue';
     import {Component} from 'vue-property-decorator';
     import Tabs from '@/components/Tabs.vue';
+    import recordTypeList from '@/constant/recordTypeList';
+
     @Component({
         components: {Tabs, Types},
     })
     export default class Statistics extends Vue {
         type = '-';
-        typeList = [
-            {text: '支出', value: '-'},
-            {text: '收入', value: '+'},
-        ];
+        recordTypeList = recordTypeList
     }
 </script>
 
