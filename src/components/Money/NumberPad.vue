@@ -68,7 +68,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "src/assets/style/helper";
+    @import "../../assets/style/helper";
     .numberPad {
         .output {
             @extend %clearFix;

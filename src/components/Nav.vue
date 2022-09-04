@@ -8,7 +8,7 @@
             <icon name="label" />
             标签
         </router-link>
-        <router-link to="/tongji" class="item" active-class="selected">
+        <router-link to="/Statistics" class="item" active-class="selected">
             <icon name="tongji" />
             统计
         </router-link>
